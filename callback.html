@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>AsambleaSmart · Ingresando…</title>
+<style>body{font-family:system-ui,sans-serif;background:#f5f6f8;color:#222;display:flex;align-items:center;justify-content:center;height:100vh;margin:0}</style>
+</head>
+<body>
+<p>Ingresando a AsambleaSmart…</p>
+<script>
+// Puente de ingreso con Google: reenvía a la aplicación solo "code", "state" y "error",
+// sin los parámetros con URLs (iss, scope) que bloquea el firewall del hosting.
+(function () {
+  var destino = "https://asambleasmart.runasp.net/cuenta/callback";
+  var entrada = new URLSearchParams(window.location.search);
+  var salida = new URLSearchParams();
+  ["code", "state", "error"].forEach(function (k) {
+    var v = entrada.get(k);
+    if (v) salida.set(k, v);
+  });
+  window.location.replace(destino + "?" + salida.toString());
+})();
+</script>
+</body>
+</html>
